@@ -1,0 +1,6 @@
+bitbake-builds/
+build/
+tmp/
+sstate-cache/
+downloads/
+cache/

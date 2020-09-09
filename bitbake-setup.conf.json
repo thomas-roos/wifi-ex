@@ -1,0 +1,90 @@
+{
+    "version": "1.0",
+    "description": "Wifi config example for Raspberry Pi 64",
+    "sources": {
+        "bitbake": {
+            "git-remote": {
+                "remotes": {
+                    "origin": {
+                        "uri": "git://git.openembedded.org/bitbake;protocol=https"
+                    }
+                },
+                "branch": "master",
+                "rev": "f23e186a75e71ba885b9b53a1dfda99af29c67b0"
+            },
+            "path": "bitbake"
+        },
+        "openembedded-core": {
+            "git-remote": {
+                "remotes": {
+                    "origin": {
+                        "uri": "git://git.openembedded.org/openembedded-core;protocol=https"
+                    }
+                },
+                "branch": "whinlatter",
+                "rev": "7ac6a43dafa85732178933716f6ba7cdf8557990"
+            },
+            "path": "openembedded-core"
+        },
+        "meta-yocto": {
+            "git-remote": {
+                "remotes": {
+                    "origin": {
+                        "uri": "git://git.yoctoproject.org/meta-yocto;protocol=https"
+                    }
+                },
+                "branch": "whinlatter",
+                "rev": "d02d3faaf4d6075ea03e9eb47654ec7639f929a0"
+            },
+            "path": "meta-yocto"
+        },
+        "meta-openembedded": {
+            "git-remote": {
+                "remotes": {
+                    "origin": {
+                        "uri": "git://git.openembedded.org/meta-openembedded;protocol=https"
+                    }
+                },
+                "branch": "whinlatter",
+                "rev": "a4e768dcfae181dd99e39c4286fa0729ca7f4e47"
+            },
+            "path": "meta-openembedded"
+        },
+        "meta-raspberrypi": {
+            "git-remote": {
+                "remotes": {
+                    "origin": {
+                        "uri": "git://git.yoctoproject.org/meta-raspberrypi;protocol=https"
+                    }
+                },
+                "branch": "master",
+                "rev": "44cb3ba79c736732b8d4a9311181055e18e863d3"
+            },
+            "path": "meta-raspberrypi"
+        }
+    },
+    "bitbake-setup": {
+        "configurations": [
+            {
+                "name": "wifi-ex",
+                "description": "Wifi config example for Raspberry Pi 64",
+                "bb-layers": [
+                    "openembedded-core/meta",
+                    "meta-yocto/meta-poky",
+                    "meta-openembedded/meta-oe",
+                    "meta-raspberrypi"
+                ],
+                "bb-layers-file-relative": [
+                    "meta-application"
+                ],
+				"oe-fragments": ["core/yocto/sstate-mirror-cdn", "machine/raspberrypi-armv8", "application/wifi-ex"],
+                "oe-fragments-one-of": {
+                    "distro": {
+                        "description": "Distribution variants",
+                        "options": ["distro/poky-altcfg"]
+                    }
+                }
+            }
+        ]
+    }
+}
